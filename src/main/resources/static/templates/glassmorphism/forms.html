@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Portfolio Form - PORT4U</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        />
+        <style>
+            :root {
+                --white: #f4ede0;
+                --blue: #0052d5;
+                --dark-blue: #003471;
+                --purple: #5c43a9;
+                --green: #01e7b8;
+            }
+
+            body {
+                font-family: "Helvetica", sans-serif;
+                background-color: var(--blue);
+                color: var(--white);
+                margin: 0;
+                color: var(--dark-blue);
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1200px;
+                background: var(--white);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .text-center {
+                color: var(--blue);
+            }
+
+            .form-section {
+                background: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                color: var(--blue);
+            }
+
+            button.btn-primary {
+                background-color: var(--green);
+                border: none;
+            }
+
+            button.btn-primary:hover {
+                background-color: var(--white);
+                color: var(--green);
+            }
+
+            button.btn-danger {
+                background-color: #dc3545;
+                border: none;
+            }
+
+            button.btn-danger:hover {
+                background-color: #a71d2a;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Portfolio Information</h1>
+
+            <form id="portfolio-form">
+                <!-- Personal Details -->
+                <div class="form-section">
+                    <h2>Personal Details</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                class="form-control"
+                                placeholder="Your Full Name"
+                                required
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="Your Email Address"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="github" class="form-label"
+                                >GitHub Username</label
+                            >
+                            <input
+                                type="text"
+                                id="github"
+                                class="form-control"
+                                placeholder="GitHub Username"
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="linkedin" class="form-label"
+                                >LinkedIn Username</label
+                            >
+                            <input
+                                type="text"
+                                id="linkedin"
+                                class="form-control"
+                                placeholder="LinkedIn Username"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="form-section">
+                    <h2>Experience</h2>
+                    <div id="experience-blocks">
+                        <div class="block mb-3">
+                            <h5>Add Your Experience Details</h5>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Role"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Company Working At"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        placeholder="Start Year"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        placeholder="End Year"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addBlock('experience-blocks', 'Experience')"
+                    >
+                        Add Experience
+                    </button>
+                </div>
+
+                <!-- Education Section -->
+                <div class="form-section">
+                    <h2>Education</h2>
+                    <div id="education-blocks">
+                        <div class="block mb-3">
+                            <h5>Add Your Education Details</h5>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Degree Name"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Institution"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        placeholder="Start Year"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        placeholder="End Year"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addBlock('education-blocks', 'Education')"
+                    >
+                        Add Education
+                    </button>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="form-section">
+                    <h2>Achievements</h2>
+                    <div id="achievement-blocks">
+                        <div class="block mb-3">
+                            <h5>Add your Achievement</h5>
+                            <input
+                                type="text"
+                                class="form-control"
+                                maxlength="100"
+                                placeholder="Achievement (Max 100 Characters)"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addBlock('achievement-blocks', 'Achievement')"
+                    >
+                        Add Achievement
+                    </button>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="form-section">
+                    <h2>Skills</h2>
+                    <div id="skill-blocks">
+                        <div class="block mb-3">
+                            <h5>Add your Skill</h5>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Skill Name"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addBlock('skill-blocks', 'Skill')"
+                    >
+                        Add Skill
+                    </button>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="form-section">
+                    <h2>Projects</h2>
+                    <div id="project-blocks">
+                        <div class="block mb-3">
+                            <h5>Tell About Your Project</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Project Name"
+                                        required
+                                    />
+                                </div>
+                                <div class="col-md-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Project Description (One Line)"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="addBlock('project-blocks', 'Project')"
+                    >
+                        Add Project
+                    </button>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            <div class="text-center mt-3 d-none" id="update-btn-container">
+                <button class="btn btn-primary" id="update-portfolio">
+                    Update Portfolio
+                </button>
+            </div>
+        </div>
+
+        <script src="./forms.js"></script>
+    </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background: url("backdrop.jpg") no-repeat center center;
+                background-size: cover;
+
+                overflow-x: hidden;
+            }
+
+            .white-box {
+                /* background-color: #ffffff; */
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.4);
+                /* background: linear-gradient(
+          270deg,
+          rgb(118, 118, 234),
+          rgb(235, 183, 235)
+        ); */
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .glass-box {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                position: relative;
+                z-index: 1;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .profile-pic {
+                max-width: 200px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+                border: solid white;
+            }
+            .projimg {
+                height: 100px;
+                width: 100px;
+                position: absolute;
+                right: 15px;
+                bottom: 25px;
+                border-radius: 5px;
+            }
+            #nav1 {
+                background: linear-gradient(
+                    270deg,
+                    rgb(23, 23, 86),
+                    rgb(101, 41, 101)
+                );
+            }
+
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+            }
+            .navbar .navbar-nav .nav-link {
+                font-size: 1.3rem !important; /* Use !important to override Bootstrap defaults */
+            }
+            .custom-btn {
+                background: linear-gradient(
+                    270deg,
+                    rgb(36, 36, 150),
+                    rgb(131, 53, 131)
+                );
+                color: #fff;
+            }
+            .custom-btn:hover {
+                background: linear-gradient(
+                    270deg,
+                    rgb(59, 59, 230),
+                    rgb(192, 79, 192)
+                );
+                color: #fff;
+            }
+            .custom-text {
+                color: rgb(50, 50, 245);
+            }
+            .floating-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                background-color: #5c43a9;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                font-size: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .floating-button:hover {
+                background-color: #432c7a;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg" id="nav1">
+            <div class="container">
+                <a class="navbar-brand text-light" href="#">PETER JONES</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#experience"
+                                >Experience & Education</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#achievements"
+                                >Achievements</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#skills"
+                                >Skills</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#projects"
+                                >Projects</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#contact"
+                                >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container my-5">
+            <!-- Home Section -->
+            <div id="home" class="white-box text-center">
+                <h1>
+                    Hello! I'm Peter, a
+                    <span class="text custom-text">Developer</span> based in
+                    England.
+                </h1>
+                <p>
+                    I love building tools that are user-friendly, simple, and
+                    delightful.
+                </p>
+                <img
+                    src="profile.jpg"
+                    alt="Profile Picture"
+                    class="profile-pic"
+                />
+            </div>
+
+            <!-- Experience & Education Section -->
+            <div id="experience" class="white-box">
+                <h2 class="section-title">Experience & Education</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Experience</h4>
+                        <p>
+                            <strong>Developer</strong> at Company XYZ (2021 -
+                            Present)
+                        </p>
+                        <p><strong>Intern</strong> at Tech Startup (2020)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Education</h4>
+                        <p>
+                            <strong>Lambda School</strong> - Full Stack
+                            Development (2020)
+                        </p>
+                        <p>
+                            <strong>University of ABC</strong> - Bachelor in
+                            Computer Science (2017 - 2020)
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div id="achievements" class="white-box">
+                <h2 class="section-title">Achievements</h2>
+                <ul>
+                    <li>
+                        Awarded "Developer of the Year" at XYZ Company (2022)
+                    </li>
+                    <li>Completed 100+ coding challenges on LeetCode</li>
+                    <li>
+                        Contributed to an open-source project with 500+ stars on
+                        GitHub
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="skills" class="white-box position-relative">
+                <h2 class="section-title">Skills</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="glass-box">
+                            <h5>Programming Languages</h5>
+                            <p>JavaScript, Python, Java</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-box">
+                            <h5>Frameworks</h5>
+                            <p>React, Node.js, Django</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-box">
+                            <h5>Tools</h5>
+                            <p>Git, Docker, Webpack</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-box">
+                            <h5>Soft Skills</h5>
+                            <p>Communication, Teamwork, Problem-Solving</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projects" class="white-box position-relative">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="glass-box">
+                            <h5>Project One</h5>
+                            <p>Brief description of the project.</p>
+                            <a href="#" class="btn custom-btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-box">
+                            <h5>Project Two</h5>
+                            <p>Brief description of the project.</p>
+                            <a href="#" class="btn custom-btn">View Project</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-box">
+                            <h5>Project Three</h5>
+                            <p>Brief description of the project.</p>
+                            <a href="#" class="btn custom-btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="white-box text-center">
+                <h2>Contact</h2>
+                <p>
+                    If you're looking for a developer, feel free to reach out!
+                </p>
+
+                <!-- <div class="d-flex justify-content-center"> -->
+                <a href="https://linkedin.com" class="btn custom-btn"
+                    >LinkedIn</a
+                >
+                <a href="https://github.com" class="btn btn-dark">GitHub</a>
+                <!-- </div> -->
+                <a href="mailto:example@example.com" class="btn custom-btn"
+                    >Email Me</a
+                >
+                <a href=""></a>
+            </div>
+        </div>
+
+        <!-- Floating Button -->
+        <button
+            class="floating-button"
+            onclick="window.location.href = 'forms.html';"
+            data-bs-target="_blank"
+        >
+            &#9998;
+        </button>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./glassmorphism.js"></script>
+    </body>
+</html>

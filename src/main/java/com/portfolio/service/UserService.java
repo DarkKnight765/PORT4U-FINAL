@@ -1,0 +1,86 @@
+package com.portfolio.service;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.portfolio.model.User;
+
+@Service
+public class UserService {
+    private static final String USERS_FILE = "src/main/resources/users.json";
+    private final Gson gson = new Gson();
+
+    private List<User> loadUsers() throws Exception {
+        if (!Files.exists(Paths.get(USERS_FILE))) {
+            return new ArrayList<>();
+        }
+        try (FileReader reader = new FileReader(USERS_FILE)) {
+            Type listType = new TypeToken<List<User>>() {}.getType();
+            List<User> users = gson.fromJson(reader, listType);
+            return (users == null ? new ArrayList<>() : users);
+        }
+    }
+
+    private void saveUsers(List<User> users) throws Exception {
+        try (FileWriter writer = new FileWriter(USERS_FILE)) {
+            gson.toJson(users, writer);
+        }
+    }
+
+    public void registerUser(User newUser) throws Exception {
+        List<User> users = loadUsers();
+        for (User u : users) {
+            if (u.getUsername().equalsIgnoreCase(newUser.getUsername())) {
+                throw new Exception("Username already exists");
+            }
+        }
+        users.add(newUser);
+        saveUsers(users);
+    }
+
+    public boolean validateLogin(String username, String password) {
+        try {
+            for (User u : loadUsers()) {
+                if (u.getUsername().equalsIgnoreCase(username)
+                    && u.getPassword().equals(password)) {
+                    return true;
+                }
+            }
+        } catch (Exception ignored) { }
+        return false;
+    }
+
+    /** Return true if any user has this username (case‑insensitive) */
+    public boolean existsByUsername(String username) {
+        try {
+            for (User u : loadUsers()) {
+                if (u.getUsername().equalsIgnoreCase(username)) {
+                    return true;
+                }
+            }
+        } catch (Exception ignored) { }
+        return false;
+    }
+
+    /**
+     * Find the email for a given username, or return null if not found.
+     * @throws Exception if JSON load fails
+     */
+    public String findEmailByUsername(String username) throws Exception {
+        for (User u : loadUsers()) {
+            if (u.getUsername().equalsIgnoreCase(username)) {
+                return u.getEmail();
+            }
+        }
+        return null;
+    }
+}

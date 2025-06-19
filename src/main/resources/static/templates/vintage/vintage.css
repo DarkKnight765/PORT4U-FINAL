@@ -1,0 +1,130 @@
+/* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f9;
+    color: #421006;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    color: #ffffff;
+    text-shadow: 3px 3px #f96f29;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: 'Luckiest Guy', cursive;
+    color: #9b2012;
+    text-shadow: 3px 3px #f69c6f;
+    margin-bottom: 10px;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, #421006, #d11802);
+    color: #f9dac5;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    color: #f9dac5;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f9dac5;
+    color: #421006;
+    border-radius: 5px;
+    border: 2px solid #421006;
+}
+
+/* Divider */
+.divider {
+    height: 4px;
+    background: linear-gradient(90deg, #f3824b, #d11802, #421006);
+    margin: 30px 0;
+}
+
+/* Sections */
+section {
+    padding: 2rem;
+    text-align: center;
+}
+
+.content-box {
+    background: linear-gradient(145deg, #f9dac5, #f3824b);
+    color: #421006;
+    padding: 1rem;
+    border: 4px solid #d11802;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px #421006;
+    max-width: 600px;
+    margin: auto;
+}
+
+.skills-list span {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f3824b;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 2px 2px #d11802;
+    transition: transform 0.3s ease;
+}
+
+.skills-list span:hover {
+    transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(90deg, #421006, #d11802);
+    color: #f9dac5;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer a {
+    color: #f3824b;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.footer h2 {
+    color: #ffffff;
+}
+
+.footer a:hover {
+    color: #d11802;
+    border-bottom: 2px solid #f3824b;
+}
+
+/* Tagline */
+.tagline {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #f3824b;
+    margin-top: 10px;
+}

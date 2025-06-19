@@ -1,0 +1,25 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+h2 {
+    color: #4caf50;
+}
+
+p, li {
+    color: #555;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #d4f4dd;
+    color: #333;
+}

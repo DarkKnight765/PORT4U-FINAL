@@ -1,0 +1,213 @@
+:root {
+    --white: #f4ede0;
+    --blue: #0052d5;
+    --dark-blue: #003471;
+    --purple: #5c43a9;
+    --green: #01e7b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Helvetica", sans-serif;
+}
+
+body {
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--blue);
+}
+
+.navbar-brand img {
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.navbar-nav .nav-link {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.navbar-nav li a {
+    color: var(--white);
+    font-weight: 500;
+    font-size: 3vh;
+    letter-spacing: 0.12vw;
+    transition: color 0.3s;
+    display: inline-block;
+    position: relative;
+}
+
+.navbar-nav li a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 0.25rem;
+    bottom: 0;
+    left: 0;
+    background-color: var(--green);
+    transition: transform 0.3s ease-out;
+    transform-origin: bottom left;
+}
+
+.navbar-nav li a:hover {
+    color: var(--green);
+}
+
+.navbar-nav li a:hover::after {
+    transform: scaleX(1);
+}
+
+.hamburger-menu,
+.closebtn {
+    display: none;
+}
+.hero-section {
+    background: linear-gradient(to right, #0052d5, #003471);
+    color: #f4ede0;
+    padding: 6rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero-section::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url("../img/port4u-aboutus-hero.png") no-repeat center;
+    opacity: 0.1;
+}
+.hero-section h1 {
+    animation: fadeIn 1.5s ease;
+}
+.hero-section p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeIn 2s ease;
+}
+.about-content {
+    padding: 3rem 0;
+}
+.card {
+    border: none;
+    background-color: var(--blue);
+    color: #f4ede0;
+    min-height: 15rem;
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+.team-section {
+    background-color: #ffffff;
+    padding: 4rem 0;
+}
+.team-member {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.team-member img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    transition: transform 0.3s;
+    padding: 2px;
+    border: 2px solid var(--blue);
+}
+.team-member img:hover {
+    transform: scale(1.1);
+}
+.team-member h5 {
+    margin-top: 1rem;
+    color: #333;
+    font-size: 1.1rem;
+}
+.social-icons a {
+    color: var(--blue);
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+.social-icons a:hover {
+    color: var(--green);
+}
+
+.cta-btn {
+    background-color: var(--green);
+    color: var(--blue);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1100px) {
+    .hero-section::after {
+        background: var(--blue);
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .navbar-nav {
+        /* width: 0; */
+        /* display: none; */
+        width: 100vw;
+        height: 92vh;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(42, 42, 44, 0.8);
+        text-align: center;
+        font-size: 5rem;
+        z-index: 10;
+        backdrop-filter: blur(7px);
+    }
+
+    .hamburger-menu {
+        display: inline-block;
+        font-weight: 900;
+        background-color: transparent;
+        border: none;
+        font-size: 5vh;
+        color: var(--white);
+        margin-right: 1.5rem;
+    }
+    
+    .closebtn {
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        font-size: 2.75rem;
+        margin: 0;
+        padding: 0 1rem;
+    }
+}

@@ -1,0 +1,405 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pulseEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2b5fc8;
+    color: #333;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.intro{
+    text-align: center;
+    padding: 1rem;
+    margin-top: 4rem;
+    padding-bottom: 1rem;
+    background-color: rgb(162, 199, 232);
+    color: #04318c;
+    background-image: url('Downloads/bluebackground1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 1.3rem;
+    animation: pulseEffect 2.5s infinite ease-in-out;
+}
+
+
+
+nav {
+    background-color: #2b5fc8;
+    padding: 1.1rem;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+}
+
+nav ul {
+    text-align: center;
+    list-style: none;
+}
+
+nav ul li {
+    letter-spacing: 0.1rem;
+    display: inline;
+    font-size: 1.6rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 1rem;
+    text-decoration: solid;
+    text-decoration: underline;
+}
+
+nav a:hover {
+    text-decoration:none ;
+    font-size: 1.25rem;
+    color: #05b0f4;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+main {
+    max-width: 40rem;
+    margin: 3rem auto;
+    padding: 4rem;
+    background-color: rgb(162, 199, 232);
+    border-radius: 2rem;
+    box-shadow: 1px 4px 15px rgba(0, 0, 0, 1);
+    z-index: 4;
+    animation: fadeIn 0.8s ease-out;
+
+}
+
+section {
+    margin-bottom: 10rem;
+    border: 0.6rem ridge #04318c;
+    box-shadow: 10px 5px 20px rgb(5, 44, 136);
+    border-radius: 1.8rem;
+    min-height: 10rem;
+}
+.head{
+    margin:1rem;
+    text-decoration:underline;
+}
+
+#about {
+    color: #053BA6;
+    font-size: 1.2rem; 
+    padding-top: 1rem;
+    height: 15rem;
+}
+.skills-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 15rem;
+}
+
+.Socialmedia-container {
+    background-color: #053BA6;
+    border-radius: 0.625rem; 
+    color: #f4f0f3;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+}
+.Socialmedia-title{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#skills {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center;
+    height:27rem
+}
+.card2{
+    margin-top:1.5rem;
+}
+
+.card {
+    background-color: #053BA6;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: #f9f8f8;
+    flex: 0.5 0.5 150px;
+    max-width: 10rem; 
+    font-size: 1.3rem;
+    text-align: center; 
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.project {
+    background-color: #55B3D9;
+    border-radius: 0.625rem; /* 10px */
+    padding: 0.9375rem; /* 15px */
+    margin: 0.625rem 0; /* 10px */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+    font-size: 1rem;
+}
+
+.project-img {
+    width: 100%; /* Make the image responsive */
+    border-radius: 0.5rem; /* 8px */
+    margin: 0.625rem 0; /* 10px */
+}
+
+footer {
+    text-align: center;
+    background-color: #499ccf;
+    color: #f4f0f3;
+    font-size: 2rem;
+    height:7rem;
+    flex-wrap: wrap;
+}
+.footer{
+    font-size: 1rem;
+    padding-top: 2rem;
+}
+
+
+
+#projects div {
+    background-color: #053BA6;
+    color: #f4f0f3;
+}
+
+#socialmedia {
+    color: #053BA6;
+    font-weight: bold; 
+}
+
+#socialmedia img {
+    padding-top: 0.0625rem; /* 1px */
+}
+
+#achievments {
+    background-color: #053BA6;
+    border-radius: 0.625rem; 
+    padding: 1rem; 
+    margin: 0.625rem 0; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+    padding-left: 2rem;
+    color: #f4f0f3;
+    height: 18.75rem; 
+    font-size: 0.88rem; 
+    text-align: left;
+}
+.foot{
+    animation: pulseEffect 1s infinite ease-in-out;
+    width:1.1rem;
+}
+
+#education {
+    background-color: #053BA6;
+    border-radius: 0.625rem; 
+    padding: 1rem; 
+    margin: 0.625rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+    padding-left: 2%;
+    color: #f4f0f3;
+    height: 24rem;
+    font-size: 0.92rem; 
+}
+#contact{
+    padding-bottom :1rem; 
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+    .intro{
+        font-size: 1.2rem;
+    }
+    .head{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    main {
+        width:25rem;
+        padding: 2rem;
+    }
+    #about{
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 1rem;
+        font-size: 1.4rem;
+    }
+    .card {
+        font-size: 1rem;
+    }
+
+    .project {
+        font-size: 0.89rem;
+    }
+    #education{
+        padding :1rem;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    .intro{
+        font-size: 1rem;
+    }
+    nav a{
+        font-size: 0.9rem;
+        padding: 0.2rem;
+    }
+    #about{
+        padding: 0.9rem;
+        font-size: 0.8rem;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .head{
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    nav ul li {
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+    #achievments{
+        font-size: 0.9rem;
+        padding-left:2rem ;
+    }
+
+    section {
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+
+    .card, .project {
+        flex: 1 1 100%;
+        max-width: 100%;
+        font-size: 0.89rem;
+    }
+
+    footer {
+        padding: 0rem;
+        font-size: 0.9rem;
+    }
+    #contact{
+        font-size: 1rem;
+        padding-bottom: 0.8rem;
+    }
+    main {
+        margin-top: 1rem;
+        width: 27rem;
+    }
+    #education{
+        padding :1rem;
+    }
+}
+
+
+@media(max-width:543px){
+    nav a{
+        font-size: 0.7rem;
+        padding: 0.355rem;
+    }
+}
+@media (max-width: 500px) {
+    .intro{
+        font-size: 0.6rem;
+        padding-top: 1rem;
+    }
+   
+    #about{
+        padding: 0.9rem;
+        font-size: 0.85rem;
+    }
+    main {
+        margin-top: 1rem;
+        width: 15rem;
+    }
+    #contact{
+        font-size: 0.6rem;
+    }
+    .project {
+        flex: 1 1 100%;
+        max-width: 100%;
+        font-size: 1rem;
+    }
+    .head{
+        text-align: center;
+        font-size: 1.60rem;
+        margin-bottom: 2rem;
+    }
+    .card2{
+        font-size: 0.90rem;
+        margin:0;
+    }
+    #achievments{
+        font-size: 0.75rem;
+        padding-left: 1rem;
+    }
+    #education{
+        font-size: 0.88rem;
+        padding :0.7rem;
+    }
+    nav a{
+        font-size: 0.6rem;
+        padding: 0.2rem;
+    }
+    footer{
+        height:5rem;
+    }
+    .footer{
+        font-size: 0.8rem;
+        padding-top: 0.5rem;
+    }
+    .foot{
+        width: 1rem;
+    }
+
+    section {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}

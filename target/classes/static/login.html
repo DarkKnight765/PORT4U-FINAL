@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORT4U – Login</title>
+    <link rel="stylesheet" href="./assets/styles/login.css" />
+    <link rel="icon" href="./assets/img/logo.png" type="image/png" />
+    <style>
+      /* Center the OTP form inside the same container width */
+      .mode-forms {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      /* Tiny spacing between the radio buttons */
+      .mode-switch label {
+        margin-right: 1rem;
+        cursor: pointer;
+      }
+      .mode-switch input {
+        margin-right: 0.3rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <div class="logo">
+          <a href="./index.html">
+            <img src="./assets/img/logo.png" alt="PORT4U Logo" />
+          </a>
+        </div>
+        <h2>Login to PORT4U</h2>
+
+        <!-- Mode toggle -->
+        <div class="mode-switch">
+          <input type="radio" id="mode-pw" name="login-mode" checked />
+          <label for="mode-pw">Password</label>
+          <input type="radio" id="mode-otp" name="login-mode" />
+          <label for="mode-otp">OTP</label>
+        </div>
+
+        <div class="mode-forms">
+          <!-- Password Login Form -->
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="********"
+                required
+              />
+            </div>
+            <button type="submit">Login</button>
+            <p id="feedback" class="feedback"></p>
+          </form>
+
+          <!-- OTP Login Form -->
+          <div id="otpForm" style="display: none;">
+            <div class="form-group">
+              <label for="otp-username">Username:</label>
+              <input
+                type="text"
+                id="otp-username"
+                placeholder="your username"
+                required
+              />
+            </div>
+            <button type="button" id="requestOtpBtn">Request OTP</button>
+            <div class="form-group" style="margin-top: 1rem;">
+              <label for="otp-code">Enter OTP:</label>
+              <input
+                type="text"
+                id="otp-code"
+                placeholder="6‑digit code"
+                required
+              />
+            </div>
+            <button type="button" id="verifyOtpBtn">Verify & Login</button>
+            <p id="otpFeedback" class="feedback"></p>
+          </div>
+        </div>
+
+        <p>
+          Don't have an account?
+          <a href="signup.html">Sign up</a>
+        </p>
+      </div>
+
+      <div class="right-section">
+        <h1>Welcome back!</h1>
+        <p>Let's take a look at your Portfolio</p>
+        <img src="./assets/img/login.jpg" alt="Login illustration" />
+      </div>
+    </div>
+
+    <script>
+      // Mode toggling
+      const pwFormDiv = document.getElementById("loginForm");
+      const otpDiv    = document.getElementById("otpForm");
+      document.getElementById("mode-pw").onclick = () => {
+        pwFormDiv.style.display = "block";
+        otpDiv.style.display    = "none";
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("otpFeedback").textContent = "";
+      };
+      document.getElementById("mode-otp").onclick = () => {
+        pwFormDiv.style.display = "none";
+        otpDiv.style.display    = "block";
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("otpFeedback").textContent = "";
+      };
+
+      // Password login handler (unchanged)
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const feedback = document.getElementById("feedback");
+        feedback.style.display = "block";
+        feedback.textContent   = "Logging in…";
+
+        const payload = {
+          username: document.getElementById("username").value.trim(),
+          password: document.getElementById("password").value,
+        };
+
+        try {
+          const res = await fetch("http://localhost:8081/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const text = await res.text();
+          if (res.ok) {
+            feedback.className = "success feedback";
+            feedback.textContent = "✅ Login successful! Redirecting…";
+            setTimeout(() => (window.location.href = "index.html"), 800);
+          } else {
+            feedback.className = "error feedback";
+            feedback.textContent = `❌ Login failed (${res.status}): ${text}`;
+          }
+        } catch (err) {
+          feedback.className = "error feedback";
+          feedback.textContent = "⚠️ Network error: " + err.message;
+        }
+      });
+
+      // Request OTP handler
+      document.getElementById("requestOtpBtn").addEventListener("click", async () => {
+        const feedback = document.getElementById("otpFeedback");
+        feedback.style.display = "block";
+        feedback.className = "feedback";
+        feedback.textContent = "Requesting OTP…";
+
+        const username = document.getElementById("otp-username").value.trim();
+        const res = await fetch("http://localhost:8081/api/auth/request-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username }),
+        });
+        const text = await res.text();
+        if (res.ok) {
+          feedback.className = "success feedback";
+          feedback.textContent = "✅ " + text;
+        } else {
+          feedback.className = "error feedback";
+          feedback.textContent = "❌ " + text;
+        }
+      });
+
+      // Verify OTP handler
+      document.getElementById("verifyOtpBtn").addEventListener("click", async () => {
+        const feedback = document.getElementById("otpFeedback");
+        feedback.style.display = "block";
+        feedback.className = "feedback";
+        feedback.textContent = "Verifying OTP…";
+
+        const username = document.getElementById("otp-username").value.trim();
+        const otpCode  = document.getElementById("otp-code").value.trim();
+        const res = await fetch("http://localhost:8081/api/auth/verify-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, otp: otpCode }),
+        });
+        const text = await res.text();
+        if (res.ok) {
+          feedback.className = "success feedback";
+          feedback.textContent = "✅ " + text + " Redirecting…";
+          setTimeout(() => (window.location.href = "index.html"), 800);
+        } else {
+          feedback.className = "error feedback";
+          feedback.textContent = "❌ " + text;
+        }
+      });
+    </script>
+  </body>
+</html>
