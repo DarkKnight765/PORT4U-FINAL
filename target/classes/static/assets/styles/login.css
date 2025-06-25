@@ -1,3 +1,13 @@
+:root {
+    --white: #f4ede0;
+    --blue: #0052d5;
+    --dark-blue: #003471;
+    --purple: #5c43a9;
+    --green: #01e7b8;
+    scroll-behavior: smooth;
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -82,6 +92,11 @@ button {
   cursor: pointer;
   margin-top: 0.5rem;
 }
+button:hover {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
 
 #feedback {
   margin-top: 1em;
@@ -109,7 +124,7 @@ button {
 .right-section {
   background-color: #f7ecd5;
 
-  color: white;
+  color: black;
   text-align: center;
   display: flex;
   flex-direction: column;
