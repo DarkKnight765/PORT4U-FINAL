@@ -61,45 +61,61 @@
       </div>
     </div>
 
-    <script>
-      document
-        .getElementById("signup-btn")
-        .addEventListener("click", async () => {
-          const fb = document.getElementById("feedback");
-          fb.style.display = "block";
-          fb.className = "";
-          fb.textContent = "Signing up…";
+<script>
+  document
+    .getElementById("signup-btn")
+    .addEventListener("click", async () => {
+      const fb = document.getElementById("feedback");
+      fb.style.display = "block";
+      fb.className = "";
 
-          const payload = {
-            username: document.getElementById("username").value.trim(),
-            email: document.getElementById("email").value.trim(),
-            password: document.getElementById("password").value,
-          };
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-          try {
-            const res = await fetch("/api/signup", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-            const text = await res.text();
+      // ✅ Validate fields before making the request
+      if (!username || !email || !password) {
+        fb.classList.add("error");
+        fb.textContent = "❌ Please fill in all the required fields.";
+        return;
+      }
 
-            if (res.ok) {
-              fb.classList.add("success");
-              fb.textContent = "✅ " + text;
-              setTimeout(() => {
-                // Root-relative redirect on Spring Boot server
-                window.location.href = "/login.html";
-              }, 600);
-            } else {
-              fb.classList.add("error");
-              fb.textContent = `❌ Signup failed (${res.status}): ${text}`;
-            }
-          } catch (err) {
-            fb.classList.add("error");
-            fb.textContent = "⚠️ Network error: " + err.message;
-          }
+      // Optional: Basic email format check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        fb.classList.add("error");
+        fb.textContent = "❌ Please enter a valid email address.";
+        return;
+      }
+
+      fb.textContent = "Signing up…";
+
+      const payload = { username, email, password };
+
+      try {
+        const res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
-    </script>
+        const text = await res.text();
+
+        if (res.ok) {
+          fb.className = "success";
+          fb.textContent = "✅ " + text;
+          setTimeout(() => {
+            window.location.href = "/login.html";
+          }, 600);
+        } else {
+          fb.className = "error";
+          fb.textContent = `❌ Signup failed (${res.status}): ${text}`;
+        }
+      } catch (err) {
+        fb.className = "error";
+        fb.textContent = "⚠️ Network error: " + err.message;
+      }
+    });
+</script>
+
   </body>
 </html>
