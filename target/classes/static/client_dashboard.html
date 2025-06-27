@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PORT4U – Client Dashboard</title>
+  <link rel="stylesheet" href="./assets/styles/dashboard.css" />
+  <link rel="icon" href="./assets/img/logo.png" type="image/png" />
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="./assets/img/logo.png" alt="PORT4U Logo" /></div>
+    <h1>Client Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <main>
+    <section class="overview">
+      <h2>Welcome, <span id="usernameDisplay">–</span>!</h2>
+      <p>Your portfolios:</p>
+      <ul id="portfoliosList"></ul>
+      <button id="createPortfolioBtn">Create New Portfolio</button>
+    </section>
+  </main>
+
+  <script>
+    // parse current user + guard
+    const current = JSON.parse(localStorage.getItem("PORT4U_USER") || "{}");
+    if (!current.username || current.role !== "CLIENT") {
+      alert("Access denied.");
+      return location.replace("login.html");
+    }
+
+    // show username
+    document.getElementById("usernameDisplay").textContent = current.username;
+
+    // LOGOUT
+    document.getElementById("logoutBtn").onclick = () => {
+      localStorage.removeItem("PORT4U_USER");
+      location.replace("login.html");
+    };
+
+    // mock portfolios; replace with real data fetch later
+    const mockPortfolios = [
+      { id: 1, title: "Web Developer Portfolio" },
+      { id: 2, title: "Graphic Designer Showcase" }
+    ];
+
+    const ul = document.getElementById("portfoliosList");
+    mockPortfolios.forEach(p => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${p.title}</strong>
+        <button class="btn-view" data-id="${p.id}">View</button>
+        <button class="btn-edit" data-id="${p.id}">Edit</button>
+      `;
+      ul.appendChild(li);
+    });
+
+    // portfolio actions
+    ul.addEventListener("click", e => {
+      if (!e.target.dataset.id) return;
+      const id = e.target.dataset.id;
+      if (e.target.matches(".btn-view")) {
+        location.href = `portfolio_view.html?id=${id}`;
+      }
+      if (e.target.matches(".btn-edit")) {
+        location.href = `portfolio_edit.html?id=${id}`;
+      }
+    });
+
+    document.getElementById("createPortfolioBtn").onclick = () => {
+      location.href = "portfolio_new.html";
+    };
+  </script>
+</body>
+</html>

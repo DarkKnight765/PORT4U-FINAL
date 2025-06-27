@@ -9,24 +9,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portfolio.model.Role;
 import com.portfolio.model.User;
 import com.portfolio.service.UserService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")  // or your exact frontend origin(s)
+@CrossOrigin(origins = "*")
 public class AuthController {
 
     @Autowired
     private UserService userService;
 
-    // DTO for both signup & login
+    // --- DTOs ---
     public static class AuthDTO {
         public String username;
         public String email;     // only used on signup
         public String password;
+        public String role;      // optional: "CLIENT" or "ADMIN"
     }
 
+    public static record LoginResponse(String username, Role role) { }
+
+    // --- Signup Endpoint ---
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody AuthDTO dto) {
         if (dto.username == null || dto.password == null) {
@@ -35,10 +40,17 @@ public class AuthController {
                    .body("Username & password required");
         }
 
+        // build user with role (default CLIENT)
+        Role chosenRole = Role.CLIENT;
+        if ("ADMIN".equalsIgnoreCase(dto.role)) {
+            chosenRole = Role.ADMIN;
+        }
+
         User u = new User();
         u.setUsername(dto.username.trim());
         u.setPassword(dto.password);
         u.setEmail(dto.email == null ? "" : dto.email.trim());
+        u.setRole(chosenRole);
 
         try {
             userService.registerUser(u);
@@ -55,21 +67,19 @@ public class AuthController {
         }
     }
 
+    // --- Login Endpoint ---
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthDTO dto) {
+    public ResponseEntity<?> login(@RequestBody AuthDTO dto) {
         if (dto.username == null || dto.password == null) {
             return ResponseEntity
                    .badRequest()
                    .body("Username & password required");
         }
 
-        boolean valid = userService.validateLogin(
-            dto.username.trim(),
-            dto.password
-        );
-
-        if (valid) {
-            return ResponseEntity.ok("Login successful");
+        User u = userService.findByUsername(dto.username.trim());
+        if (u != null && userService.validateLogin(dto.username.trim(), dto.password)) {
+            // return JSON with role
+            return ResponseEntity.ok(new LoginResponse(u.getUsername(), u.getRole()));
         } else {
             return ResponseEntity
                    .status(HttpStatus.UNAUTHORIZED)

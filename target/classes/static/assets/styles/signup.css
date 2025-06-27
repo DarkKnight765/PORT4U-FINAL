@@ -1,12 +1,11 @@
 :root {
-    --white: #f4ede0;
-    --blue: #0052d5;
-    --dark-blue: #003471;
-    --purple: #5c43a9;
-    --green: #01e7b8;
-    scroll-behavior: smooth;
+  --white: #f4ede0;
+  --blue: #0052d5;
+  --dark-blue: #003471;
+  --purple: #5c43a9;
+  --green: #01e7b8;
+  scroll-behavior: smooth;
 }
-
 
 * {
   box-sizing: border-box;
@@ -14,6 +13,7 @@
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 body {
   background-color: #0052d5;
   display: flex;
@@ -21,116 +21,134 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
+
 .container {
   display: flex;
   width: 90%;
   max-width: 1000px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   background-color: #f7ecd5;
   flex-wrap: wrap;
 }
-.left-section, .right-section {
+
+.left-section,
+.right-section {
   flex: 1;
   padding: 40px;
 }
+
 .left-section {
   text-align: center;
 }
+
 .left-section h1 {
   font-size: 20px;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
+
 .left-section p {
   font-size: 14px;
   color: #333;
   margin-bottom: 1.5rem;
 }
+
 .left-section img {
   max-width: 70%;
   border-radius: 10px;
 }
+
 .right-section {
   text-align: center;
-
 }
+
 .logo img {
   width: 70px;
   margin-bottom: 1rem;
   border-radius: 50%;
 }
+
 h2 {
   font-size: 20px;
   color: #333;
   margin-bottom: 1.2rem;
 }
-.form-container {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
+
 .form-group {
   margin-bottom: 1rem;
   text-align: left;
 }
+
 .form-group label {
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
   font-size: 14px;
   color: #333;
 }
-.form-group input {
+
+.form-group input,
+.form-group select {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-/* instead of `button { ... }` use: */
+
 button.button {
-    width: 100%;            /* full‑width of its container */
-    max-width: 500px;       /* cap how wide you want it */
-    padding: 12px;          /* nice tap target */
-    background-color: var(--green);
-    color: var(--blue);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0.5rem 0;       /* space above/below */
-    height: auto;           /* let padding drive height */
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  background-color: var(--green);
+  color: var(--blue);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0.5rem 0;
 }
 
-/* and the hover */
 button.button:hover {
-    background-color: var(--purple);
-    color: var(--white);
+  background-color: var(--purple);
+  color: var(--white);
 }
 
-#feedback {
+.feedback {
   margin-top: 1em;
   font-weight: bold;
   display: none;
   text-align: center;
 }
-#feedback.success { color: green; }
-#feedback.error   { color: red;   }
+.feedback.success {
+  color: green;
+}
+.feedback.error {
+  color: red;
+}
+
 .right-section p:last-of-type {
   margin-top: 1rem;
   color: #333;
   font-size: 14px;
 }
+
 a {
   color: #003366;
   font-weight: bold;
   text-decoration: none;
 }
+
 @media (max-width: 768px) {
-  .container { flex-direction: column; }
-  .left-section, .right-section {
+  .container {
+    flex-direction: column;
+  }
+  .left-section,
+  .right-section {
     padding: 30px 20px;
   }
-  .left-section img { display: none; }
+  .left-section img {
+    display: none;
+  }
 }

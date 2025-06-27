@@ -4,6 +4,10 @@ E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\service
 E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\config\SecurityConfig.java
 E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\model\User.java
 E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\PortfolioApplication.java
-E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\service\OtpService.java
+E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\controller\AdminController.java
 E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\controller\AuthController.java
+E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\controller\ClientController.java
+E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\model\Role.java
+E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\service\OtpService.java
+E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\dto\PortfolioDto.java
 E:\port 4 u final\WDAAA\WDAAA\port4u\Backend\src\main\java\com\portfolio\util\FileStorageUtil.java

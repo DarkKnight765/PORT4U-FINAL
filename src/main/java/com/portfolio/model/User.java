@@ -1,6 +1,14 @@
 package com.portfolio.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "users",
@@ -23,12 +31,18 @@ public class User {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
+    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.CLIENT;   // default
+
+
     public User() { }
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email    = email;
+        this.role     = Role.CLIENT;
     }
 
     // getters & setters...
@@ -39,4 +53,6 @@ public class User {
     public void   setPassword(String p) { this.password = p; }
     public String getEmail()    { return email; }
     public void   setEmail(String e)    { this.email = e; }
+    public Role getRole() { return role; }
+    public void setRole(Role r) { this.role = r; }
 }

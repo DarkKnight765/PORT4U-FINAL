@@ -54,7 +54,6 @@
   </head>
   <body>
     <div class="container">
-      
       <div class="left-section">
         <div class="logo">
           <img
@@ -83,7 +82,7 @@
               <input
                 type="text"
                 id="username"
-                placeholder="your@email.com"
+                placeholder="your username"
                 required
               />
             </div>
@@ -117,7 +116,7 @@
               <input
                 type="text"
                 id="otp-code"
-                placeholder="6‑digit code"
+                placeholder="6-digit code"
                 required
               />
             </div>
@@ -138,36 +137,56 @@
         <img src="./assets/img/login.jpg" alt="Login illustration" />
       </div>
     </div>
-
     <script>
-      // Mode toggling
-      const pwFormDiv = document.getElementById("loginForm");
-      const otpDiv = document.getElementById("otpForm");
-      document.getElementById("mode-pw").onclick = () => {
-        pwFormDiv.style.display = "block";
-        otpDiv.style.display = "none";
-        document.getElementById("feedback").textContent = "";
-        document.getElementById("otpFeedback").textContent = "";
-      };
-      document.getElementById("mode-otp").onclick = () => {
-        pwFormDiv.style.display = "none";
-        otpDiv.style.display = "block";
-        document.getElementById("feedback").textContent = "";
-        document.getElementById("otpFeedback").textContent = "";
-      };
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("Login script loaded");
 
-      // Password login handler (unchanged)
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", async (e) => {
+        // Elements
+        const loginForm = document.getElementById("loginForm");
+        const feedback = document.getElementById("feedback");
+        const otpFeedback = document.getElementById("otpFeedback");
+        const otpForm = document.getElementById("otpForm");
+
+        // Mode toggle
+        document.getElementById("mode-pw").onclick = () => {
+          loginForm.style.display = "block";
+          otpForm.style.display = "none";
+          feedback.textContent = "";
+          otpFeedback.textContent = "";
+        };
+        document.getElementById("mode-otp").onclick = () => {
+          loginForm.style.display = "none";
+          otpForm.style.display = "block";
+          feedback.textContent = "";
+          otpFeedback.textContent = "";
+        };
+
+        // Shared success handler
+        function handleSuccess(data) {
+          // fallback: use username if no token field
+          const authToken = data.token || data.username;
+          if (!authToken || !data.role) {
+            throw new Error("Missing token/role in response");
+          }
+
+          localStorage.setItem("PORT4U_BASIC", authToken);
+          localStorage.setItem("PORT4U_ROLE", data.role);
+
+          // Redirect to homepage; navbar will handle dashboard link
+          setTimeout(() => (window.location.href = "index.html"), 800);
+        }
+
+        // Password login
+        loginForm.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const feedback = document.getElementById("feedback");
+          console.log("Password login submitted");
+
           feedback.style.display = "block";
+          feedback.className = "feedback";
+          feedback.textContent = "Logging in…";
 
           const username = document.getElementById("username").value.trim();
           const password = document.getElementById("password").value;
-
-          // ✅ JS-based field validation
           if (!username || !password) {
             feedback.className = "error feedback";
             feedback.textContent =
@@ -175,87 +194,133 @@
             return;
           }
 
-          feedback.className = "feedback";
-          feedback.textContent = "Logging in…";
-
-          const payload = { username, password };
-
           try {
             const res = await fetch("http://localhost:8081/api/login", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
+              body: JSON.stringify({ username, password }),
             });
+            console.log("HTTP status:", res.status);
 
-            const text = await res.text();
-            if (res.ok) {
-              feedback.className = "success feedback";
-              feedback.textContent = "✅ Login successful! Redirecting…";
-              setTimeout(() => (window.location.href = "index.html"), 800);
-            } else {
-              feedback.className = "error feedback";
-              feedback.textContent = `❌ Login failed (${res.status}): ${text}`;
+            let data;
+            try {
+              data = await res.json();
+              console.log("Response JSON:", data);
+            } catch {
+              const text = await res.text();
+              console.warn("Non-JSON login response:", text);
+              throw new Error("Server did not return JSON");
             }
+
+            if (!res.ok) {
+              throw new Error(data.message || `Status ${res.status}`);
+            }
+
+            feedback.className = "success feedback";
+            feedback.textContent = "✅ Login successful! Redirecting…";
+            handleSuccess(data);
           } catch (err) {
+            console.error(err);
             feedback.className = "error feedback";
-            feedback.textContent = "⚠️ Network error: " + err.message;
+            feedback.textContent = `❌ Login failed: ${err.message}`;
           }
         });
 
-      // Request OTP handler
-      document
-        .getElementById("requestOtpBtn")
-        .addEventListener("click", async () => {
-          const feedback = document.getElementById("otpFeedback");
-          feedback.style.display = "block";
-          feedback.className = "feedback";
-          feedback.textContent = "Requesting OTP…";
+        // Request OTP
+        document
+          .getElementById("requestOtpBtn")
+          .addEventListener("click", async () => {
+            otpFeedback.style.display = "block";
+            otpFeedback.className = "feedback";
+            otpFeedback.textContent = "Requesting OTP…";
 
-          const username = document.getElementById("otp-username").value.trim();
-          const res = await fetch(
-            "http://localhost:8081/api/auth/request-otp",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username }),
+            const username = document
+              .getElementById("otp-username")
+              .value.trim();
+            if (!username) {
+              otpFeedback.className = "error feedback";
+              otpFeedback.textContent = "❌ Please enter your username.";
+              return;
             }
-          );
-          const text = await res.text();
-          if (res.ok) {
-            feedback.className = "success feedback";
-            feedback.textContent = "✅ " + text;
-          } else {
-            feedback.className = "error feedback";
-            feedback.textContent = "❌ " + text;
-          }
-        });
 
-      // Verify OTP handler
-      document
-        .getElementById("verifyOtpBtn")
-        .addEventListener("click", async () => {
-          const feedback = document.getElementById("otpFeedback");
-          feedback.style.display = "block";
-          feedback.className = "feedback";
-          feedback.textContent = "Verifying OTP…";
-
-          const username = document.getElementById("otp-username").value.trim();
-          const otpCode = document.getElementById("otp-code").value.trim();
-          const res = await fetch("http://localhost:8081/api/auth/verify-otp", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, otp: otpCode }),
+            try {
+              const res = await fetch(
+                "http://localhost:8081/api/auth/request-otp",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ username }),
+                }
+              );
+              const text = await res.text();
+              if (res.ok) {
+                otpFeedback.className = "success feedback";
+                otpFeedback.textContent = "✅ " + text;
+              } else {
+                otpFeedback.className = "error feedback";
+                otpFeedback.textContent = "❌ " + text;
+              }
+            } catch (err) {
+              console.error(err);
+              otpFeedback.className = "error feedback";
+              otpFeedback.textContent = "⚠️ Network error: " + err.message;
+            }
           });
-          const text = await res.text();
-          if (res.ok) {
-            feedback.className = "success feedback";
-            feedback.textContent = "✅ " + text + " Redirecting…";
-            setTimeout(() => (window.location.href = "index.html"), 800);
-          } else {
-            feedback.className = "error feedback";
-            feedback.textContent = "❌ " + text;
-          }
-        });
+
+        // Verify OTP & login
+        document
+          .getElementById("verifyOtpBtn")
+          .addEventListener("click", async () => {
+            otpFeedback.style.display = "block";
+            otpFeedback.className = "feedback";
+            otpFeedback.textContent = "Verifying OTP…";
+
+            const username = document
+              .getElementById("otp-username")
+              .value.trim();
+            const otpCode = document.getElementById("otp-code").value.trim();
+            if (!username || !otpCode) {
+              otpFeedback.className = "error feedback";
+              otpFeedback.textContent =
+                "❌ Please enter both username and OTP.";
+              return;
+            }
+
+            try {
+              const res = await fetch(
+                "http://localhost:8081/api/auth/verify-otp",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ username, otp: otpCode }),
+                }
+              );
+              console.log("OTP verify status:", res.status);
+
+              let data;
+              try {
+                data = await res.json();
+                console.log("OTP response JSON:", data);
+              } catch {
+                const text = await res.text();
+                console.warn("Non-JSON OTP response:", text);
+                throw new Error("Server did not return JSON");
+              }
+
+              if (!res.ok) {
+                throw new Error(data.message || `Status ${res.status}`);
+              }
+
+              otpFeedback.className = "success feedback";
+              otpFeedback.textContent = "✅ OTP verified! Redirecting…";
+              handleSuccess(data);
+            } catch (err) {
+              console.error(err);
+              otpFeedback.className = "error feedback";
+              otpFeedback.textContent = `❌ ${err.message}`;
+            }
+          });
+      });
     </script>
   </body>
 </html>

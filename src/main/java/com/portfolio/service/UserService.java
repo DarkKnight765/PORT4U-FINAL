@@ -26,7 +26,7 @@ public class UserService {
         try (FileReader reader = new FileReader(USERS_FILE)) {
             Type listType = new TypeToken<List<User>>() {}.getType();
             List<User> users = gson.fromJson(reader, listType);
-            return (users == null ? new ArrayList<>() : users);
+            return users == null ? new ArrayList<>() : users;
         }
     }
 
@@ -59,7 +59,18 @@ public class UserService {
         return false;
     }
 
-    /** Return true if any user has this username (case‑insensitive) */
+    /** Find and return the User (or null) */
+    public User findByUsername(String username) {
+        try {
+            return loadUsers().stream()
+                .filter(u -> u.getUsername().equalsIgnoreCase(username))
+                .findFirst()
+                .orElse(null);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public boolean existsByUsername(String username) {
         try {
             for (User u : loadUsers()) {
@@ -71,10 +82,6 @@ public class UserService {
         return false;
     }
 
-    /**
-     * Find the email for a given username, or return null if not found.
-     * @throws Exception if JSON load fails
-     */
     public String findEmailByUsername(String username) throws Exception {
         for (User u : loadUsers()) {
             if (u.getUsername().equalsIgnoreCase(username)) {
@@ -82,5 +89,13 @@ public class UserService {
             }
         }
         return null;
+    }
+     public List<User> getAllUsers() {
+        try {
+            return loadUsers();
+        } catch (Exception e) {
+            // (Optional) log the exception here
+            return new ArrayList<>();
+        }
     }
 }

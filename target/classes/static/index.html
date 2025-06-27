@@ -1,23 +1,11 @@
-<!-- Contributors -->
-<!-- 
-1. LCB2024017 Varun Baisane [Team Lead]
-2. LCB2024051 Atharv Vaish
-3. LCB2024015 Nihal Sharma
-4. LCB2024044 Mohammad Rehan Khan
-5. 
-6. LCB2024001 Dinar
-7. LCB2024012 Tanishka Meena
-8. 
-9. 
-10.LCB2024027 Shubham Mittal
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link
       rel="shortcut icon"
@@ -34,37 +22,80 @@
     <script defer src="./assets/script/script.js"></script>
   </head>
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar">
       <div class="container">
         <div class="logo">
-          <a href="#">
-            <img src="./assets/img/logo.png" alt="" />
+          <a href="index.html">
+            <img
+              src="./assets/img/logo.png"
+              alt="PORT4U Logo"
+            />
           </a>
         </div>
-        <button class="hamburger-menu openbtn" onclick="openNav()">☰</button>
+
+        <button
+          class="hamburger-menu openbtn"
+          onclick="openNav()"
+        >
+          ☰
+        </button>
+
         <ul class="nav-links">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          <a
+            href="javascript:void(0)"
+            class="closebtn"
+            onclick="closeNav()"
             >×</a
           >
-          <li><a href="#">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#features">Features</a></li>
-          <li><a href="./templates.html">Templates</a></li>
+          <li>
+            <a href="./templates.html">Templates</a>
+          </li>
           <li><a href="./about.html">About Us</a></li>
+
+          <!-- Dynamic Links -->
+          <li
+            id="dashboardNav"
+            style="display: none"
+          >
+            <a href="dashboard.html">Dashboard</a>
+          </li>
+          <li
+            id="loginNav"
+            style="display: none"
+          >
+            <a href="login.html">Login</a>
+          </li>
+          <li
+            id="logoutNav"
+            style="display: none"
+          >
+            <a href="#" id="logoutBtn"
+              >Logout</a
+            >
+          </li>
         </ul>
       </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>
-          Create a <br /><span>Remarkable Portfolio</span><br />that Speaks for
-          You
+          Create a <br /><span>Remarkable Portfolio</span
+          ><br />that Speaks for You
         </h1>
         <p>
-          We craft elegant and professional portfolios to showcase your unique
-          skills and talents.
+          We craft elegant and professional portfolios to
+          showcase your unique skills and talents.
         </p>
-        <a href="./login.html" class="cta-btn">Start Building Today</a>
+        <a
+          href="./login.html"
+          class="cta-btn"
+          >Start Building Today</a
+        >
       </div>
       <div class="hero-illustration">
         <img
@@ -74,53 +105,79 @@
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features-section">
+    <!-- FEATURES SECTION -->
+    <section
+      id="features"
+      class="features-section"
+    >
       <div class="feature fade-in-bottom">
         <div class="feature-illustration">
-          <img src="./assets/img/f1.png" alt="Feature 1 Illustration" />
+          <img
+            src="./assets/img/f1.png"
+            alt="Feature 1 Illustration"
+          />
         </div>
         <div class="feature-content">
-          <h2>Portfolio of <span>Your</span> Choice</h2>
+          <h2>
+            Portfolio of <span>Your</span> Choice
+          </h2>
           <p>
-            Choose from a variety of beautiful, professionally designed
-            templates that can be tailored to your needs.
+            Choose from a variety of beautiful,
+            professionally designed templates that can
+            be tailored to your needs.
           </p>
         </div>
       </div>
 
       <div class="feature fade-in-bottom">
         <div class="feature-illustration">
-          <img src="./assets/img/f2.png" alt="Feature 2 Illustration" />
-        </div>
-        <div class="feature-content">
-          <h2>Be on the web in <span>Just 3 Steps</span></h2>
-          <p>In just 3 easy steps your portfolio will sail on the internet.</p>
-        </div>
-      </div>
-      <div class="feature fade-in-bottom">
-        <div class="feature-illustration">
-          <img src="./assets/img/f3.png" alt="Feature 3 Illustration" />
+          <img
+            src="./assets/img/f2.png"
+            alt="Feature 2 Illustration"
+          />
         </div>
         <div class="feature-content">
           <h2>
-            <span>Responsive</span> & <span>Accessible</span> with every screen
+            Be on the web in <span>Just 3 Steps</span>
+          </h2>
+          <p>
+            In just 3 easy steps your portfolio will sail
+            on the internet.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature fade-in-bottom">
+        <div class="feature-illustration">
+          <img
+            src="./assets/img/f3.png"
+            alt="Feature 3 Illustration"
+          />
+        </div>
+        <div class="feature-content">
+          <h2>
+            <span>Responsive</span> &amp;
+            <span>Accessible</span> with every screen
             size
           </h2>
           <p>
-            Your portfolio will look stunning on any device, whether on a
-            mobile, tablet or laptop.
+            Your portfolio will look stunning on any
+            device, whether on a mobile, tablet or laptop.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-info">
-          <h3>Make your Online Prescence stand out.</h3>
-          <a href="./signup.html" class="cta-btn">Start Building Today</a>
+          <h3>Make your Online Presence stand out.</h3>
+          <a
+            href="./signup.html"
+            class="cta-btn"
+            >Start Building Today</a
+          >
         </div>
         <div class="footer-contact">
           <h3>Contact Us</h3>
@@ -130,16 +187,28 @@
           <h3>Follow Us</h3>
           <div class="social-links">
             <a href="#" class="social-icon">
-              <img src="./assets/img/facebook-icon.svg" alt="" />
+              <img
+                src="./assets/img/facebook-icon.svg"
+                alt="Facebook"
+              />
             </a>
             <a href="#" class="social-icon">
-              <img src="./assets/img/twitter.svg" alt="" />
+              <img
+                src="./assets/img/twitter.svg"
+                alt="Twitter"
+              />
             </a>
             <a href="#" class="social-icon">
-              <img src="./assets/img/linkedin.svg" alt="" />
+              <img
+                src="./assets/img/linkedin.svg"
+                alt="LinkedIn"
+              />
             </a>
             <a href="#" class="social-icon">
-              <img src="./assets/img/instagram-icon.svg" alt="" />
+              <img
+                src="./assets/img/instagram-icon.svg"
+                alt="Instagram"
+              />
             </a>
           </div>
         </div>
@@ -148,5 +217,33 @@
         <p>&copy; 2024 PORT4U. All Rights Reserved.</p>
       </div>
     </footer>
+
+    <!-- SCRIPT: Toggle Nav Links & Logout -->
+<script>
+  // Read the token & role
+  const token = localStorage.getItem("PORT4U_BASIC");
+  const role  = localStorage.getItem("PORT4U_ROLE");
+
+  // Show Dashboard + Logout when logged in, otherwise show Login
+  document.getElementById("dashboardNav").style.display = token ? "inline-block" : "none";
+  document.getElementById("logoutNav").   style.display = token ? "inline-block" : "none";
+  document.getElementById("loginNav").    style.display = token ? "none"            : "inline-block";
+
+  // If logged in, point Dashboard to the correct page
+  if (token) {
+    const dashLink = document.querySelector("#dashboardNav a");
+    dashLink.href = role === "ADMIN"
+      ? "admin_dashboard.html"
+      : "client_dashboard.html";
+  }
+
+  // Clear both token & role on logout, then reload
+  document.getElementById("logoutBtn")?.addEventListener("click", () => {
+    localStorage.removeItem("PORT4U_BASIC");
+    localStorage.removeItem("PORT4U_ROLE");
+    window.location.reload();
+  });
+</script>
+
   </body>
 </html>
