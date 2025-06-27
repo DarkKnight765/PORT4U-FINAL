@@ -1,0 +1,200 @@
+:root {
+  /* Your brand colors */
+  --primary: #1e3a8a;
+  --secondary: #2563eb;
+  --accent: #10b981;
+  --bg: #f3f4f6;
+  --card-bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .logo img {
+  height: 40px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+header button {
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+header button:hover {
+  background: #0f9d75;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Statistics Cards */
+.stats .card-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.stats .card {
+  flex: 1;
+  min-width: 180px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.stats .card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.stats .card p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* User Management Table */
+.manage-accounts table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.manage-accounts th,
+.manage-accounts td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.manage-accounts thead {
+  background: var(--secondary);
+  color: white;
+}
+.manage-accounts tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+.manage-accounts button.btn-delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+.manage-accounts button.btn-delete:hover {
+  background: #dc2626;
+}
+
+/* Client Dashboard Overview */
+.overview {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.overview h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.overview p {
+  color: var(--muted);
+}
+.overview ul {
+  list-style: none;
+  margin: 1rem 0;
+}
+.overview ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+.overview ul li strong {
+  color: var(--text);
+}
+.overview ul li button {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+.overview ul li button:hover {
+  background: #1d4ed8;
+}
+#createPortfolioBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+#createPortfolioBtn:hover {
+  background: #0f9d75;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .stats .card-container {
+    flex-direction: column;
+  }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header h1 {
+    margin: 0.5rem 0;
+  }
+}
