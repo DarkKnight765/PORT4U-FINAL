@@ -176,7 +176,7 @@
           setTimeout(() => (window.location.href = "index.html"), 800);
         }
 
-        // Password login
+        // Password login logic stays unchanged…
         loginForm.addEventListener("submit", async (e) => {
           e.preventDefault();
           console.log("Password login submitted");
@@ -226,7 +226,6 @@
           }
         });
 
-        // Request OTP
         document
           .getElementById("requestOtpBtn")
           .addEventListener("click", async () => {
@@ -267,7 +266,6 @@
             }
           });
 
-        // Verify OTP & login
         document
           .getElementById("verifyOtpBtn")
           .addEventListener("click", async () => {
@@ -295,25 +293,28 @@
                   body: JSON.stringify({ username, otp: otpCode }),
                 }
               );
-              console.log("OTP verify status:", res.status);
+
+              const raw = await res.text();
+
+              if (!res.ok) {
+                throw new Error(raw);
+              }
 
               let data;
               try {
-                data = await res.json();
+                data = JSON.parse(raw);
                 console.log("OTP response JSON:", data);
-              } catch {
-                const text = await res.text();
-                console.warn("Non-JSON OTP response:", text);
-                throw new Error("Server did not return JSON");
+                otpFeedback.className = "success feedback";
+                otpFeedback.textContent = "✅ OTP verified! Redirecting…";
+                handleSuccess(data);
+              } catch (e) {
+                console.log("OTP response text:", raw);
+                localStorage.setItem("PORT4U_BASIC", raw);
+                localStorage.setItem("PORT4U_ROLE", "user");
+                otpFeedback.className = "success feedback";
+                otpFeedback.textContent = "✅ OTP verified! Redirecting…";
+                setTimeout(() => (window.location.href = "index.html"), 800);
               }
-
-              if (!res.ok) {
-                throw new Error(data.message || `Status ${res.status}`);
-              }
-
-              otpFeedback.className = "success feedback";
-              otpFeedback.textContent = "✅ OTP verified! Redirecting…";
-              handleSuccess(data);
             } catch (err) {
               console.error(err);
               otpFeedback.className = "error feedback";
