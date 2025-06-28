@@ -1,5 +1,5 @@
-# netlify.toml at your repo root
 [build]
-  command = ""
-  # change this to exactly where index.html lives
+  # A no‑op so Netlify doesn’t try to install anything
+  command = "true"
+  # Relative to the repo root
   publish = "src/main/resources/static"
