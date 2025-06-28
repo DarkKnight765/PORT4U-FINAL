@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customize Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Customize Minimalism Portfolio</h2>
+  <form id="minimalismForm" class="row g-3">
+
+    <!-- Title & Subtitle -->
+    <div class="col-md-6">
+      <label for="title" class="form-label">Portfolio Title</label>
+      <input type="text" id="title" class="form-control" placeholder="Welcome to My Portfolio">
+    </div>
+    <div class="col-md-6">
+      <label for="subtitle" class="form-label">Subtitle</label>
+      <input type="text" id="subtitle" class="form-control" placeholder="Minimalist theme showcasing my journey.">
+    </div>
+
+    <!-- Experience -->
+    <div class="col-12"><h4>Experience</h4></div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp1Title" placeholder="Job Title 1 at Company A">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp1Desc" placeholder="Description 1">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp2Title" placeholder="Job Title 2 at Company B">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp2Desc" placeholder="Description 2">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp3Title" placeholder="Job Title 3 at Company C">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="exp3Desc" placeholder="Description 3">
+    </div>
+
+    <!-- Education -->
+    <div class="col-12"><h4>Education</h4></div>
+    <div class="col-12">
+      <textarea id="education" class="form-control" placeholder="One entry per line (e.g., Degree at University)"></textarea>
+    </div>
+
+    <!-- Skills -->
+    <div class="col-12"><h4>Skills</h4></div>
+    <div class="col-12">
+      <textarea id="skills" class="form-control" placeholder="One skill per line"></textarea>
+    </div>
+
+    <!-- Projects -->
+    <div class="col-12"><h4>Projects</h4></div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj1Title" placeholder="Project 1 Title">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj1Desc" placeholder="Project 1 Description">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj2Title" placeholder="Project 2 Title">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj2Desc" placeholder="Project 2 Description">
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj3Title" placeholder="Project 3 Title">
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="proj3Desc" placeholder="Project 3 Description">
+    </div>
+
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-dark px-4">Apply Changes</button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  document.getElementById("minimalismForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const data = {
+      title: document.getElementById("title").value,
+      subtitle: document.getElementById("subtitle").value,
+      exp1Title: document.getElementById("exp1Title").value,
+      exp1Desc: document.getElementById("exp1Desc").value,
+      exp2Title: document.getElementById("exp2Title").value,
+      exp2Desc: document.getElementById("exp2Desc").value,
+      exp3Title: document.getElementById("exp3Title").value,
+      exp3Desc: document.getElementById("exp3Desc").value,
+      education: document.getElementById("education").value.split('\n').filter(Boolean),
+      skills: document.getElementById("skills").value.split('\n').filter(Boolean),
+      projects: [
+        {
+          title: document.getElementById("proj1Title").value,
+          desc: document.getElementById("proj1Desc").value
+        },
+        {
+          title: document.getElementById("proj2Title").value,
+          desc: document.getElementById("proj2Desc").value
+        },
+        {
+          title: document.getElementById("proj3Title").value,
+          desc: document.getElementById("proj3Desc").value
+        }
+      ]
+    };
+
+    localStorage.setItem("portfolioDataMinimal", JSON.stringify(data));
+    window.location.href = "minimalism.html";
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

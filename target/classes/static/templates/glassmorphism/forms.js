@@ -42,7 +42,7 @@ function getBlocksData(sectionId) {
 
         // Collect values from each input
         inputs.forEach(function (input, index) {
-            blockData[`field${index + 1}`] = input.value; // Store input values as "field1", "field2", etc.
+            blockData[field${index + 1}] = input.value; // Store input values as "field1", "field2", etc.
         });
 
         data.push(blockData); // Add the block data to the array
