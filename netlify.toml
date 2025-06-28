@@ -1,3 +1,7 @@
 [build]
-  command = "" 
+  # if you don't need to build anything on Netlify:
+  command = ""
+  # this is relative to the repo root
+  base    = "WDAAA/WDAAA/port4u"
+  # this is relative to the base directory you just set
   publish = "Backend/src/main/resources/static"
