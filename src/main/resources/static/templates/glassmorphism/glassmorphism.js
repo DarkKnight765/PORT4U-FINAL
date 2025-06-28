@@ -1,61 +1,69 @@
 // Load data from localStorage and update the page
 document.addEventListener("DOMContentLoaded", function () {
-
-    // Retrieve data from localStorage
     const storedData = localStorage.getItem("portfolioData");
 
     if (storedData) {
-        // Parse the JSON string into an object
         const portfolioData = JSON.parse(storedData);
 
-        // Access static fields
-        console.log("Name:", portfolioData.name);
-        console.log("Email:", portfolioData.email);
-        console.log("GitHub:", portfolioData.github);
-        console.log("LinkedIn:", portfolioData.linkedin);
+        // Update static fields
+        document.querySelector(".navbar-brand").textContent = portfolioData.name || "Portfolio";
+        document.querySelector("#home h1").innerHTML = Hello! I'm ${portfolioData.name || "a Developer"}, a <span class="text custom-text">Developer</span> based in your city.;
+        document.querySelector("#home p").textContent = "I love building tools that are user-friendly, simple, and delightful.";
 
-        // Access dynamic blocks
-        console.log("Experience:");
-        portfolioData.experience.forEach((exp, index) => {
-            console.log(`  Block ${index + 1}:`, exp);
+        // Update contact links
+        document.querySelector('#contact a[href*="linkedin"]').href = https://linkedin.com/in/${portfolioData.linkedin || ""};
+        document.querySelector('#contact a[href*="github"]').href = https://github.com/${portfolioData.github || ""};
+        document.querySelector('#contact a[href^="mailto:"]').href = mailto:${portfolioData.email || ""};
+
+        // Update Experience
+        const expCol = document.querySelector("#experience .col-md-6:nth-child(1)");
+        expCol.innerHTML = "<h4>Experience</h4>";
+        portfolioData.experience.forEach(exp => {
+            expCol.innerHTML += <p><strong>${exp.field1 || ""}</strong> at ${exp.field2 || ""} (${exp.field3 || ""})</p>;
         });
 
-        console.log("Education:");
-        portfolioData.education.forEach((edu, index) => {
-            console.log(`  Block ${index + 1}:`, edu);
+        // Update Education
+        const eduCol = document.querySelector("#experience .col-md-6:nth-child(2)");
+        eduCol.innerHTML = "<h4>Education</h4>";
+        portfolioData.education.forEach(edu => {
+            eduCol.innerHTML += <p><strong>${edu.field1 || ""}</strong> - ${edu.field2 || ""} (${edu.field3 || ""})</p>;
         });
 
-        console.log("Achievements:");
-        portfolioData.achievements.forEach((ach, index) => {
-            console.log(`  Block ${index + 1}:`, ach);
+        // Update Achievements
+        const achList = document.querySelector("#achievements ul");
+        achList.innerHTML = "";
+        portfolioData.achievements.forEach(ach => {
+            achList.innerHTML += <li>${ach.field1 || ""}</li>;
         });
 
-        console.log("Skills:");
-        portfolioData.skills.forEach((skill, index) => {
-            console.log(`  Block ${index + 1}:`, skill);
+        // Update Skills
+        const skillsRow = document.querySelector("#skills .row");
+        skillsRow.innerHTML = "";
+        portfolioData.skills.forEach(skill => {
+            skillsRow.innerHTML += `
+                <div class="col-md-3">
+                    <div class="glass-box">
+                        <h5>${skill.field1 || ""}</h5>
+                        <p>${skill.field2 || ""}</p>
+                    </div>
+                </div>`;
         });
 
-        console.log("Projects:");
-        portfolioData.projects.forEach((proj, index) => {
-            console.log(`  Block ${index + 1}:`, proj);
+        // Update Projects
+        const projectsRow = document.querySelector("#projects .row");
+        projectsRow.innerHTML = "";
+        portfolioData.projects.forEach(proj => {
+            projectsRow.innerHTML += `
+                <div class="col-md-4">
+                    <div class="glass-box">
+                        <h5>${proj.field1 || ""}</h5>
+                        <p>${proj.field2 || ""}</p>
+                        <a href="${proj.field3 || "#"}" class="btn custom-btn" target="_blank">View Project</a>
+                    </div>
+                </div>`;
         });
-
-        function getBlock(sectionName, blockIndex) {
-            const section = portfolioData[sectionName];
-            if (section && section[blockIndex]) {
-                return section[blockIndex]; // Return the requested block
-            } else {
-                console.log(`No data found for ${sectionName} block ${blockIndex + 1}`);
-                return null;
-            }
-        }
 
     } else {
         console.log("No portfolio data found in localStorage.");
     }
-
-    
-
 });
-
-
