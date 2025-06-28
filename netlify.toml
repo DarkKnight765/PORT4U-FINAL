@@ -2,4 +2,4 @@
 [build]
   command = ""
   # change this to exactly where index.html lives
-  publish = "WDAAA/WDAAA/port4u/Backend/src/main/resources/static"
+  publish = "src/main/resources/static"
