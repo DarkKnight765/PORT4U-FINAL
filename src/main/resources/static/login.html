@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="./assets/styles/login.css" />
     <link rel="icon" href="./assets/img/logo.png" type="image/png" />
     <style>
-      /* Center the OTP form inside the same container width */
+    
       .mode-forms {
         width: 100%;
         max-width: 400px;
         margin: 0 auto;
       }
-      /* Tiny spacing between the radio buttons */
+    
       .mode-switch {
         display: flex;
         margin: 20px auto;
@@ -21,7 +21,7 @@
         border-radius: 9999px;
         overflow: hidden;
         width: 220px;
-        height: 48px; /* FIXED HEIGHT for consistent vertical alignment */
+        height: 48px; 
         background-color: #f0fdf4;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       }
@@ -35,8 +35,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%; /* Ensures label fills container height */
-        padding: 12px 0; /* Adjust as needed */
+        height: 100%; 
+        padding: 12px 0; 
         cursor: pointer;
         font-weight: 600;
         font-size: 16px;
@@ -141,13 +141,11 @@
       document.addEventListener("DOMContentLoaded", () => {
         console.log("Login script loaded");
 
-        // Elements
         const loginForm = document.getElementById("loginForm");
         const feedback = document.getElementById("feedback");
         const otpFeedback = document.getElementById("otpFeedback");
         const otpForm = document.getElementById("otpForm");
 
-        // Mode toggle
         document.getElementById("mode-pw").onclick = () => {
           loginForm.style.display = "block";
           otpForm.style.display = "none";
@@ -161,9 +159,7 @@
           otpFeedback.textContent = "";
         };
 
-        // Shared success handler
         function handleSuccess(data) {
-          // fallback: use username if no token field
           const authToken = data.token || data.username;
           if (!authToken || !data.role) {
             throw new Error("Missing token/role in response");
@@ -172,11 +168,9 @@
           localStorage.setItem("PORT4U_BASIC", authToken);
           localStorage.setItem("PORT4U_ROLE", data.role);
 
-          // Redirect to homepage; navbar will handle dashboard link
           setTimeout(() => (window.location.href = "index.html"), 800);
         }
 
-        // Password login logic stays unchanged…
         loginForm.addEventListener("submit", async (e) => {
           e.preventDefault();
           console.log("Password login submitted");

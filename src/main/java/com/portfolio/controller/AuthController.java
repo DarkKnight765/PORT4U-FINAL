@@ -24,9 +24,9 @@ public class AuthController {
     // --- DTOs ---
     public static class AuthDTO {
         public String username;
-        public String email;     // only used on signup
+        public String email;    
         public String password;
-        public String role;      // optional: "CLIENT" or "ADMIN"
+        public String role;     
     }
 
     public static record LoginResponse(String username, Role role) { }

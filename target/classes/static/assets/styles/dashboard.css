@@ -1,5 +1,4 @@
 :root {
-  /* Your brand colors */
   --primary: #1e3a8a;
   --secondary: #2563eb;
   --accent: #10b981;
@@ -61,7 +60,6 @@ main {
   padding: 0 1rem;
 }
 
-/* Statistics Cards */
 .stats .card-container {
   display: flex;
   gap: 1rem;
@@ -88,7 +86,6 @@ main {
   color: var(--secondary);
 }
 
-/* User Management Table */
 .manage-accounts table {
   width: 100%;
   border-collapse: collapse;
@@ -125,7 +122,6 @@ main {
   background: #dc2626;
 }
 
-/* Client Dashboard Overview */
 .overview {
   background: var(--card-bg);
   padding: 2rem;
@@ -185,7 +181,6 @@ main {
   background: #0f9d75;
 }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
   .stats .card-container {
     flex-direction: column;

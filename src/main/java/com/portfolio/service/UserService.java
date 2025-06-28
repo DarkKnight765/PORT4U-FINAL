@@ -59,7 +59,6 @@ public class UserService {
         return false;
     }
 
-    /** Find and return the User (or null) */
     public User findByUsername(String username) {
         try {
             return loadUsers().stream()
@@ -94,7 +93,6 @@ public class UserService {
         try {
             return loadUsers();
         } catch (Exception e) {
-            // (Optional) log the exception here
             return new ArrayList<>();
         }
     }

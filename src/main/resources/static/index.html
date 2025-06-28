@@ -218,18 +218,14 @@
       </div>
     </footer>
 
-    <!-- SCRIPT: Toggle Nav Links & Logout -->
 <script>
-  // Read the token & role
   const token = localStorage.getItem("PORT4U_BASIC");
   const role  = localStorage.getItem("PORT4U_ROLE");
 
-  // Show Dashboard + Logout when logged in, otherwise show Login
   document.getElementById("dashboardNav").style.display = token ? "inline-block" : "none";
   document.getElementById("logoutNav").   style.display = token ? "inline-block" : "none";
   document.getElementById("loginNav").    style.display = token ? "none"            : "inline-block";
 
-  // If logged in, point Dashboard to the correct page
   if (token) {
     const dashLink = document.querySelector("#dashboardNav a");
     dashLink.href = role === "ADMIN"
@@ -237,7 +233,6 @@
       : "client_dashboard.html";
   }
 
-  // Clear both token & role on logout, then reload
   document.getElementById("logoutBtn")?.addEventListener("click", () => {
     localStorage.removeItem("PORT4U_BASIC");
     localStorage.removeItem("PORT4U_ROLE");

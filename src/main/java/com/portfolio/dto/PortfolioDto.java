@@ -4,9 +4,8 @@ public class PortfolioDto {
     private Long id;
     private String title;
     private String author;
-    private String status;    // e.g. "PENDING" or "APPROVED"
-    private String createdAt; // ISO date string
-
+    private String status;    
+    private String createdAt; 
     public PortfolioDto() {}
 
     public PortfolioDto(Long id, String title, String author, String status, String createdAt) {

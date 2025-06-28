@@ -67,7 +67,6 @@ public void sendOtpEmail(String username, String otp) {
         msg.setText("Your OTP code is: " + otp + "\nIt will expire in 5 minutes.");
         mailSender.send(msg);
     } catch (Exception ex) {
-        // swallow or log, but don’t rethrow:
         System.err.println("⚠️ Warning: SMTP send failed: " + ex.getMessage());
     }
 }

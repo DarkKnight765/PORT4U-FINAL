@@ -26,14 +26,12 @@
     </main>
 
     <script>
-      // CLIENT guard
       const role = localStorage.getItem("PORT4U_ROLE");
       if (!role || role !== "CLIENT") {
         alert("Access denied.");
         window.location.replace("login.html");
       }
 
-      // LOGOUT button
       const logoutBtn = document.getElementById("logoutBtn");
       if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
@@ -44,7 +42,6 @@
         });
       }
 
-      // mock portfolios; replace with real data fetch later
       const mockPortfolios = [
         { id: 1, title: "Web Developer Portfolio" },
         { id: 2, title: "Graphic Designer Showcase" },
@@ -61,7 +58,6 @@
         ul.appendChild(li);
       });
 
-      // portfolio actions
       ul.addEventListener("click", (e) => {
         if (!e.target.dataset.id) return;
         const id = e.target.dataset.id;

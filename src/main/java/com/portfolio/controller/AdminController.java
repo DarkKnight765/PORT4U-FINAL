@@ -25,7 +25,7 @@ public class AdminController {
     @GetMapping("/users")
     public ResponseEntity<List<String>> getAllUsers() {
         List<String> usernames = userService
-            .getAllUsers()              // <-- use getAllUsers(), not loadAllUsers()
+            .getAllUsers()            
             .stream()
             .map(User::getUsername)
             .collect(Collectors.toList());

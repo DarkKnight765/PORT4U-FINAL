@@ -45,14 +45,12 @@
   </main>
 
   <script>
-  // 1) Check the stored role, not a missing user object
   const role = localStorage.getItem("PORT4U_ROLE");
   if (!role || role !== "ADMIN") {
     alert("Access denied.");
     window.location.replace("login.html");
   }
 
-  // 2) Wire up Logout exactly as before
   const logoutBtn = document.getElementById('logoutBtn');
   logoutBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -61,15 +59,12 @@
     window.location.replace('login.html');
   });
 
-    // load all users
     const users = JSON.parse(localStorage.getItem("PORT4U_USERS") || "[]");
 
-    // fill stats
     document.getElementById("totalUsers").textContent = users.length;
     document.getElementById("adminCount").textContent = users.filter(u => u.role === "ADMIN").length;
     document.getElementById("clientCount").textContent = users.filter(u => u.role === "CLIENT").length;
 
-    // populate table
     const tbody = document.getElementById("usersTable");
     users.forEach(u => {
       const tr = document.createElement("tr");
@@ -82,7 +77,6 @@
       tbody.appendChild(tr);
     });
 
-    // delete handler
     tbody.addEventListener("click", e => {
       if (e.target.matches(".btn-delete")) {
         const username = e.target.dataset.user;

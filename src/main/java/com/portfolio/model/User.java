@@ -33,8 +33,7 @@ public class User {
 
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private Role role = Role.CLIENT;   // default
-
+    private Role role = Role.CLIENT; 
 
     public User() { }
 
