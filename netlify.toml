@@ -1,5 +1,5 @@
 [build]
-  # A no‑op so Netlify doesn’t try to install anything
+  # no-op build step
   command = "true"
-  # Relative to the repo root
+  # point directly at the static files
   publish = "src/main/resources/static"
